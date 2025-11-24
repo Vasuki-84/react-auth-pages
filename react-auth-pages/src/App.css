@@ -30,3 +30,12 @@
   border-color: #4a90e2;
   box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
 }
+.signup-btn{
+  background: #4a90e2;
+  border: 2px solid #4a90e2;
+  border-radius: 5px;
+  margin-top: 4px;
+  padding: 4px;
+  cursor: pointer;
+
+}
