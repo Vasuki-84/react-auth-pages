@@ -16,9 +16,9 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login Page</h2>
-      <form onSubmit={loginUser}>
+    <div className="login-container">
+      <h2 className="login-title"> Login Page</h2>
+      <form onSubmit={loginUser} className="login-form">
         <label>Email</label>
         <input
           type="text"
