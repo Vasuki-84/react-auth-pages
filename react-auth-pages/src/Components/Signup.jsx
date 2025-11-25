@@ -2,22 +2,32 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 function Signup() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
   const createUser = async (e) => {
     e.preventDefault();
+
+    if (!id || !name || !email || !password || !confirmPassword) {
+      alert("please enter all the fields");
+      return;
+    }
+
+    if(password !== confirmPassword){
+      alert("passwords mismatch");
+      return;
+    }
     try {
       const userData = { name, email, password };
 
       await axios.post(`http://localhost:5000/signup`, userData);
       alert("Signup successfull");
-      navigate("/login")
+      navigate("/login");
     } catch (err) {
       console.log(err.message);
     }
@@ -46,6 +56,12 @@ function Signup() {
           type="text"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+        />
+        <label>Confirm Password</label>
+        <input
+          type="text"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <button className="signup-btn" type="submit">
           Submit
