@@ -5,6 +5,12 @@
       "name": "Vasuki T",
       "email": "admin1@gmail.com",
       "password": "12345"
+    },
+    {
+      "id": "7183",
+      "name": "Vasuki T",
+      "email": "iamvasukithangaraj@gmail.com",
+      "password": "12345"
     }
   ],
   "login": []

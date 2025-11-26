@@ -32,7 +32,7 @@ function Login() {
 +      localStorage.setItem("loggedUser", JSON.stringify(user));
 
       alert("Login successful!");
-      navigate("/home"); // redirect after login
+      navigate("/home"); 
     } catch (err) {
       console.log("Error:", err.message);
     }
