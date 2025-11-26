@@ -1,68 +1,113 @@
+
+
+
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
-  const [id, setId] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  const createUser = async (e) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  // Input change handler
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!id || !name || !email || !password || !confirmPassword) {
-      alert("please enter all the fields");
+    // validate all fields
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      alert("Please fill all the fields");
       return;
     }
 
-    if(password !== confirmPassword){
-      alert("passwords mismatch");
+    // validate password
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
       return;
     }
+
     try {
-      const userData = { name, email, password };
+      const res = await axios.get("http://localhost:5000/signup");
 
-      await axios.post(`http://localhost:5000/signup`, userData);
-      alert("Signup successfull");
+      const existingUser = res.data.find(
+        (user) => user.email === formData.email
+      );
+
+      if (existingUser) {
+        alert("Email already exists!");
+        return;
+      }
+
+      const newUser = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      };
+
+      await axios.post("http://localhost:5000/signup", newUser);
+
+      alert("Signup successful!");
       navigate("/login");
     } catch (err) {
-      console.log(err.message);
+      console.log("Error:", err.message);
     }
   };
 
   return (
     <div className="signup-container">
-      <h2 className="signup-title">SignUp form</h2>
-      <form className="signup-form" onSubmit={createUser}>
-        <label>Id</label>
-        <input type="text" value={id} onChange={(e) => setId(e.target.value)} />
+      <h2 className="signup-title">Signup Form</h2>
+
+      <form className="signup-form" onSubmit={handleSubmit}>
         <label>Name</label>
         <input
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
         />
+
         <label>Email</label>
         <input
           type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
         />
+
         <label>Password</label>
         <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
         />
+
         <label>Confirm Password</label>
         <input
-          type="text"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          type="password"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleChange}
         />
+
         <button className="signup-btn" type="submit">
           Submit
         </button>
@@ -72,3 +117,4 @@ function Signup() {
 }
 
 export default Signup;
+

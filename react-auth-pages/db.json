@@ -1,53 +1,11 @@
 {
   "signup": [
     {
-      "id": "5a64",
-      "name": "vasu",
-      "email": "csdd@gmail.com",
-      "password": "sfsf"
-    },
-    {
-      "id": "3e2b",
-      "name": "vsasfjks",
-      "email": "cscsc@gmail.comd",
-      "password": "fdf4444"
-    },
-    {
-      "id": "85f7",
-      "name": "",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "3f2f",
-      "name": "",
-      "email": "",
-      "password": ""
-    },
-    {
-      "id": "be36",
-      "name": "vasgtht",
-      "email": "dfgfg",
-      "password": "dfgfgfg"
-    },
-    {
-      "id": "fe03",
-      "name": "sdfd",
-      "email": "sdfdf",
-      "password": "123456"
-    },
-    {
-      "id": "2c1f",
-      "name": "sfddf",
-      "email": "dgfg",
+      "id": "8121",
+      "name": "Vasuki T",
+      "email": "admin1@gmail.com",
       "password": "12345"
     }
   ],
-  "login": [
-    {
-      "id": "f5ed",
-      "email": "vasuki@gmail.com",
-      "password": "23445"
-    }
-  ]
+  "login": []
 }
